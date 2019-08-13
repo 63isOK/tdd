@@ -1,10 +1,12 @@
 language:go
 
 go:
-- 1.12.x
-- master
+    - 1.12.x
+    - master
 
-install: cd hello/
+install: 
+    - cd hello/
 
-script: go test -v ./...
+script: 
+    - go test -v ./...
 
