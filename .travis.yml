@@ -4,5 +4,7 @@ go:
 - 1.12.x
 - master
 
+install: cd hello/
+
 script: go test -v ./...
 
