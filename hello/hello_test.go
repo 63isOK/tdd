@@ -41,3 +41,36 @@ func TestHelloWorld(t *testing.T) {
 		assertCorrectMessage(t, got, want)
 	})
 }
+
+func TestGetPrefix(t *testing.T) {
+	assertCorrectMessage := func(t *testing.T, got, want string) {
+		t.Helper()
+		if got != want {
+			t.Errorf("want '%s' got '%s'", want, got)
+		}
+	}
+
+	t.Run("get chinese prefix", func(t *testing.T) {
+		got := getPrefix(chineseLanguage)
+		want := chinesePrefix
+		assertCorrectMessage(t, got, want)
+	})
+
+	t.Run("get french prefix", func(t *testing.T) {
+		got := getPrefix(frenchLanguage)
+		want := frenchPrefix
+		assertCorrectMessage(t, got, want)
+	})
+
+	t.Run("get english prefix", func(t *testing.T) {
+		got := getPrefix(englishLanguage)
+		want := englishPrefix
+		assertCorrectMessage(t, got, want)
+	})
+
+	t.Run("get prefix without specific language", func(t *testing.T) {
+		got := getPrefix("")
+		want := englishPrefix
+		assertCorrectMessage(t, got, want)
+	})
+}
