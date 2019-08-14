@@ -3,7 +3,8 @@ package main
 import "fmt"
 
 const (
-	defaultPrefix   = "hello "
+	englishPrefix   = "hello "
+	englishLanguage = "english"
 	chinesePrefix   = "你好 "
 	chineseLanguage = "chinese"
 	frenchPrefix    = "bonjour "
@@ -16,15 +17,16 @@ func HelloWorld(who, language string) string {
 		who = "world"
 	}
 
-	if language == chineseLanguage {
+	switch language {
+	case chineseLanguage:
 		return chinesePrefix + who
-	}
-
-	if language == frenchLanguage {
+	case frenchLanguage:
 		return frenchPrefix + who
+	case englishLanguage:
+		fallthrough
+	default:
+		return englishPrefix + who
 	}
-
-	return defaultPrefix + who
 
 }
 
