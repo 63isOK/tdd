@@ -1,6 +1,19 @@
 package main
 
+import (
+	"fmt"
+)
+
 // Sum calc the sum of array
-func Sum(n [5]int) int {
-	return n[0] + n[1] + n[2] + n[3] + n[4]
+func Sum(n [5]int) (sum int) {
+	for _, x := range n {
+		sum += x
+	}
+
+	return
+}
+
+func main() {
+	s := Sum([5]int{1, 1, 1, 1, 1})
+	fmt.Println(s)
 }
