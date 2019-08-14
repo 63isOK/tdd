@@ -2,17 +2,25 @@ package main
 
 import "fmt"
 
-const helloPrefix = "hello "
+const (
+	defaultPrefix   = "hello "
+	chinesePrefix   = "你好 "
+	chineseLanguage = "chinese"
+)
 
 // HelloWorld say hello to me
-func HelloWorld(who string) string {
+func HelloWorld(who, language string) string {
 	if who == "" {
 		who = "world"
 	}
 
-	return helloPrefix + who
+	if language == chineseLanguage {
+		return chinesePrefix + who
+	}
+
+	return defaultPrefix + who
 }
 
 func main() {
-	fmt.Println(HelloWorld("Tom"))
+	fmt.Println(HelloWorld("Tom", ""))
 }
