@@ -1,6 +1,8 @@
 package loop
 
-import "testing"
+import (
+	"testing"
+)
 
 func TestRepeat(t *testing.T) {
 
@@ -23,4 +25,10 @@ func TestRepeat(t *testing.T) {
 		want := "aaaaaaa"
 		assertCorrectMessage(t, got, want)
 	})
+}
+
+func BenchmarkRepeat(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		repeat("q", 3)
+	}
 }
