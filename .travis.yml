@@ -5,8 +5,8 @@ language:
 go:
   - "1.12.x"
 
-before_install: 
-  - cd hello
+# before_install:
+#   - cd hello
 
 script: 
   - go test -v 
