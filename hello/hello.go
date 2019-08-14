@@ -6,6 +6,7 @@ const (
 	defaultPrefix   = "hello "
 	chinesePrefix   = "你好 "
 	chineseLanguage = "chinese"
+	frenchLanguage  = "french"
 )
 
 // HelloWorld say hello to me
@@ -19,6 +20,7 @@ func HelloWorld(who, language string) string {
 	}
 
 	return defaultPrefix + who
+
 }
 
 func main() {
