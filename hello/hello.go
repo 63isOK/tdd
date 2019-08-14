@@ -17,16 +17,20 @@ func HelloWorld(who, language string) string {
 		who = "world"
 	}
 
-	prefix := englishPrefix
+	return getPrefix(language) + who
+}
 
+func getPrefix(language string) (prefix string) {
 	switch language {
 	case chineseLanguage:
 		prefix = chinesePrefix
 	case frenchLanguage:
 		prefix = frenchPrefix
+	default:
+		prefix = englishPrefix
 	}
 
-	return prefix + who
+	return
 }
 
 func main() {
