@@ -6,6 +6,7 @@ const (
 	defaultPrefix   = "hello "
 	chinesePrefix   = "你好 "
 	chineseLanguage = "chinese"
+	frenchPrefix    = "bonjour "
 	frenchLanguage  = "french"
 )
 
@@ -17,6 +18,10 @@ func HelloWorld(who, language string) string {
 
 	if language == chineseLanguage {
 		return chinesePrefix + who
+	}
+
+	if language == frenchLanguage {
+		return frenchPrefix + who
 	}
 
 	return defaultPrefix + who
