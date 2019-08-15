@@ -20,19 +20,17 @@ func TestPerimeter(t *testing.T) {
 		assertCorrectMessage(t, want, got)
 	}
 
-	t.Run("rectangle", func(t *testing.T) {
-		r := Rectangle{2, 3}
-		want := 10.0
+	areaTest := []struct {
+		shape Shape
+		want  float64
+	}{
+		{&Rectangle{2, 3}, 10},
+		{&Circle{2}, 12.56},
+	}
 
-		checkPerimeter(t, &r, want)
-	})
-
-	t.Run("circle", func(t *testing.T) {
-		r := Circle{2}
-		want := 12.56
-
-		checkPerimeter(t, &r, want)
-	})
+	for _, tt := range areaTest {
+		checkPerimeter(t, tt.shape, tt.want)
+	}
 }
 
 func TestArea(t *testing.T) {
@@ -43,17 +41,15 @@ func TestArea(t *testing.T) {
 		assertCorrectMessage(t, want, got)
 	}
 
-	t.Run("rectangle", func(t *testing.T) {
-		r := Rectangle{2, 3}
-		want := 6.0
+	areaTest := []struct {
+		shape Shape
+		want  float64
+	}{
+		{&Rectangle{3, 4}, 12},
+		{&Circle{10}, 314},
+	}
 
-		checkArea(t, &r, want)
-	})
-
-	t.Run("circle", func(t *testing.T) {
-		r := Circle{3}
-		want := 28.26
-
-		checkArea(t, &r, want)
-	})
+	for _, tt := range areaTest {
+		checkArea(t, tt.shape, tt.want)
+	}
 }
