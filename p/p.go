@@ -4,6 +4,12 @@ import (
 	"fmt"
 )
 
+// Shape abstract shape
+type Shape interface {
+	Area() float64
+	Perimeter() float64
+}
+
 // Rectangle is a rectangle
 type Rectangle struct {
 	Width  float64

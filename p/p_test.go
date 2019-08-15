@@ -1,59 +1,59 @@
 package main
 
 import (
-	"fmt"
 	"testing"
 )
-
-func float64Compare(x, y float64) bool {
-	sx := fmt.Sprintf("%.2f", x)
-	sy := fmt.Sprintf("%.2f", y)
-
-	return sx == sy
-}
 
 func assertCorrectMessage(t *testing.T, want, got float64) {
 	t.Helper()
 
-	if !float64Compare(got, want) {
+	if int(want*100) != int(got*100) {
 		t.Errorf("want '%.2f' got '%.2f'", want, got)
 	}
 }
 
 func TestPerimeter(t *testing.T) {
 
+	checkPerimeter := func(t *testing.T, shape Shape, want float64) {
+		t.Helper()
+		got := shape.Perimeter()
+		assertCorrectMessage(t, want, got)
+	}
+
 	t.Run("rectangle", func(t *testing.T) {
 		r := Rectangle{2, 3}
-		got := r.Perimeter()
 		want := 10.0
 
-		assertCorrectMessage(t, want, got)
+		checkPerimeter(t, &r, want)
 	})
 
 	t.Run("circle", func(t *testing.T) {
 		r := Circle{2}
-		got := r.Perimeter()
 		want := 12.56
 
-		assertCorrectMessage(t, want, got)
+		checkPerimeter(t, &r, want)
 	})
 }
 
 func TestArea(t *testing.T) {
 
+	checkArea := func(t *testing.T, shape Shape, want float64) {
+		t.Helper()
+		got := shape.Area()
+		assertCorrectMessage(t, want, got)
+	}
+
 	t.Run("rectangle", func(t *testing.T) {
 		r := Rectangle{2, 3}
-		got := r.Area()
 		want := 6.0
 
-		assertCorrectMessage(t, want, got)
+		checkArea(t, &r, want)
 	})
 
 	t.Run("circle", func(t *testing.T) {
 		r := Circle{3}
-		got := r.Area()
 		want := 28.26
 
-		assertCorrectMessage(t, want, got)
+		checkArea(t, &r, want)
 	})
 }
