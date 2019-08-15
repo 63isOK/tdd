@@ -6,12 +6,13 @@ import (
 
 // P calc the perimeter of the rectangle
 func P(w, h float64) float64 {
-	return 0
+	return 2 * (w + h)
 }
 
 // Area calc the area fo the rectangle
 func Area(w, h float64) float64 {
-	return 0
+	return w * h
+
 }
 
 func main() {
