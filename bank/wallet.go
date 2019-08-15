@@ -1,5 +1,9 @@
 package main
 
+import (
+	"fmt"
+)
+
 // Wallet is wallet
 type Wallet struct {
 	balance int
@@ -13,4 +17,10 @@ func (w *Wallet) Deposit(amount int) {
 // Balance query the money
 func (w *Wallet) Balance() int {
 	return w.balance
+}
+
+func main() {
+	w := Wallet{}
+	w.Deposit(1)
+	fmt.Println(w.Balance())
 }
