@@ -12,6 +12,14 @@ func float64Compare(x, y float64) bool {
 	return sx == sy
 }
 
+func assertCorrectMessage(t *testing.T, want, got float64) {
+	t.Helper()
+
+	if !float64Compare(got, want) {
+		t.Errorf("want '%.2f' got '%.2f'", want, got)
+	}
+}
+
 func TestPerimeter(t *testing.T) {
 
 	t.Run("rectangle", func(t *testing.T) {
@@ -19,9 +27,7 @@ func TestPerimeter(t *testing.T) {
 		got := RectanglePerimeter(r)
 		want := 10.0
 
-		if got != want {
-			t.Errorf("want '%.2f' got '%.2f'", want, got)
-		}
+		assertCorrectMessage(t, want, got)
 	})
 
 	t.Run("circle", func(t *testing.T) {
@@ -29,9 +35,7 @@ func TestPerimeter(t *testing.T) {
 		got := CirclePerimeter(r)
 		want := 12.56
 
-		if got != want {
-			t.Errorf("want '%.2f' got '%.2f'", want, got)
-		}
+		assertCorrectMessage(t, want, got)
 	})
 }
 
@@ -42,9 +46,7 @@ func TestArea(t *testing.T) {
 		got := RectangleArea(r)
 		want := 6.0
 
-		if got != want {
-			t.Errorf("want '%.2f' got '%.2f'", want, got)
-		}
+		assertCorrectMessage(t, want, got)
 	})
 
 	t.Run("circle", func(t *testing.T) {
@@ -52,8 +54,6 @@ func TestArea(t *testing.T) {
 		got := CircleArea(r)
 		want := 28.26
 
-		if !float64Compare(want, got) {
-			t.Errorf("want '%.2f' got '%.2f'", want, got)
-		}
+		assertCorrectMessage(t, want, got)
 	})
 }
