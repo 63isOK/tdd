@@ -26,6 +26,8 @@ func TestPerimeter(t *testing.T) {
 	}{
 		{&Rectangle{2, 3}, 10},
 		{&Circle{2}, 12.56},
+		{&Square{10}, 40},
+		{&Square{3.32}, 13.28},
 	}
 
 	for _, tt := range areaTest {
@@ -47,6 +49,8 @@ func TestArea(t *testing.T) {
 	}{
 		{&Rectangle{3, 4}, 12},
 		{&Circle{10}, 314},
+		{&Square{10}, 100},
+		{&Square{3.32}, 11.02},
 	}
 
 	for _, tt := range areaTest {

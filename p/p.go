@@ -44,6 +44,21 @@ func (c *Circle) Area() float64 {
 	return PI * c.Raduis * c.Raduis
 }
 
+// Square is a square
+type Square struct {
+	Width float64
+}
+
+// Perimeter calc the perimeter of the square
+func (s *Square) Perimeter() float64 {
+	return 4 * s.Width
+}
+
+// Area calc the area fo the square
+func (s *Square) Area() float64 {
+	return s.Width * s.Width
+}
+
 func main() {
 	c := Circle{2}
 	fmt.Println(c.Area())
