@@ -2,8 +2,8 @@ package main
 
 import "testing"
 
-func TestP(t *testing.T) {
-	got := P(2.0, 2.0)
+func TestRectanglePerimeter(t *testing.T) {
+	got := RectanglePerimeter(2.0, 2.0)
 	want := 8.0
 
 	if got != want {
@@ -11,8 +11,8 @@ func TestP(t *testing.T) {
 	}
 }
 
-func TestArea(t *testing.T) {
-	got := Area(2, 3)
+func TestRectangleArea(t *testing.T) {
+	got := RectangleArea(2, 3)
 	want := 6.0
 
 	if got != want {
