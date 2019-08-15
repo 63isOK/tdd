@@ -24,7 +24,7 @@ func TestPerimeter(t *testing.T) {
 
 	t.Run("rectangle", func(t *testing.T) {
 		r := Rectangle{2, 3}
-		got := RectanglePerimeter(r)
+		got := r.Perimeter()
 		want := 10.0
 
 		assertCorrectMessage(t, want, got)
@@ -32,7 +32,7 @@ func TestPerimeter(t *testing.T) {
 
 	t.Run("circle", func(t *testing.T) {
 		r := Circle{2}
-		got := CirclePerimeter(r)
+		got := r.Perimeter()
 		want := 12.56
 
 		assertCorrectMessage(t, want, got)
@@ -43,7 +43,7 @@ func TestArea(t *testing.T) {
 
 	t.Run("rectangle", func(t *testing.T) {
 		r := Rectangle{2, 3}
-		got := RectangleArea(r)
+		got := r.Area()
 		want := 6.0
 
 		assertCorrectMessage(t, want, got)
@@ -51,7 +51,7 @@ func TestArea(t *testing.T) {
 
 	t.Run("circle", func(t *testing.T) {
 		r := Circle{3}
-		got := CircleArea(r)
+		got := r.Area()
 		want := 28.26
 
 		assertCorrectMessage(t, want, got)
