@@ -35,3 +35,17 @@ func TestSearch(t *testing.T) {
 		assertError(t, want, err)
 	})
 }
+
+func TestAdd(t *testing.T) {
+	d := Dictionary{}
+	d.Add("hello", "world")
+
+	want := "world"
+	got, err := d.Search("hello")
+
+	if err != nil {
+		t.Fatal("not found", err)
+	}
+
+	assertStrings(t, want, got)
+}

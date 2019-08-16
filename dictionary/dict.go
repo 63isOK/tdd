@@ -20,5 +20,10 @@ func (d Dictionary) Search(key string) (string, error) {
 	return value, nil
 }
 
+// Add is add to map
+func (d Dictionary) Add(key, value string) {
+	d[key] = value
+}
+
 func main() {
 }
