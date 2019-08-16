@@ -21,6 +21,10 @@ func (w *Wallet) Deposit(amount Bitcoin) {
 	w.balance += amount
 }
 
+// Withdraw withdraw money from bank
+func (w *Wallet) Withdraw(amount Bitcoin) {
+}
+
 // Balance query the money
 func (w *Wallet) Balance() Bitcoin {
 	return w.balance
