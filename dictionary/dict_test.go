@@ -11,8 +11,9 @@ func assertStrings(t *testing.T, want, got string) {
 }
 
 func TestSearch(t *testing.T) {
-	d := map[string]string{"test": "there is a test case"}
-	got := Search(d, "test")
+	d := Dictionary{"test": "there is a test case"}
+
+	got := d.Search("test")
 	want := "there is a test case"
 
 	assertStrings(t, want, got)
