@@ -1,11 +1,12 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 )
 
 // Bitcoin is bit coin
-type Bitcoin int
+type Bitcoin uint
 
 func (b Bitcoin) String() string {
 	return fmt.Sprintf("%d BTC", b)
@@ -22,8 +23,13 @@ func (w *Wallet) Deposit(amount Bitcoin) {
 }
 
 // Withdraw withdraw money from bank
-func (w *Wallet) Withdraw(amount Bitcoin) {
-	w.balance -= amount
+func (w *Wallet) Withdraw(amount Bitcoin) error {
+	if amount <= w.balance {
+		w.balance -= amount
+		return nil
+	}
+
+	return errors.New("amount error")
 }
 
 // Balance query the money
@@ -32,7 +38,7 @@ func (w *Wallet) Balance() Bitcoin {
 }
 
 func main() {
-	w := Wallet{}
-	w.Deposit(1)
+	w := Wallet{Bitcoin(20)}
+	w.Withdraw(100)
 	fmt.Println(w.Balance())
 }
