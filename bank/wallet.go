@@ -29,6 +29,7 @@ func (w *Wallet) Withdraw(amount Bitcoin) error {
 		return nil
 	}
 
+	// return nil
 	return errors.New("amount error")
 }
 
@@ -39,6 +40,8 @@ func (w *Wallet) Balance() Bitcoin {
 
 func main() {
 	w := Wallet{Bitcoin(20)}
-	w.Withdraw(100)
-	fmt.Println(w.Balance())
+	err := w.Withdraw(100)
+	if err != nil {
+		fmt.Println(w.Balance())
+	}
 }
