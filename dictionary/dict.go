@@ -4,7 +4,8 @@ import "errors"
 
 // error
 var (
-	ErrorNotFound = errors.New("there is no test case")
+	ErrorNotFound      = errors.New("there is no test case")
+	ErrorAlreadyExists = errors.New("already exists")
 )
 
 // Dictionary is dictionary
@@ -21,8 +22,14 @@ func (d Dictionary) Search(key string) (string, error) {
 }
 
 // Add is add to map
-func (d Dictionary) Add(key, value string) {
+func (d Dictionary) Add(key, value string) error {
+	if _, ok := d[key]; ok {
+		return ErrorAlreadyExists
+	}
+
 	d[key] = value
+
+	return nil
 }
 
 func main() {

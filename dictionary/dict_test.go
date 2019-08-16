@@ -37,15 +37,28 @@ func TestSearch(t *testing.T) {
 }
 
 func TestAdd(t *testing.T) {
-	d := Dictionary{}
-	d.Add("hello", "world")
+	t.Run("add", func(t *testing.T) {
+		d := Dictionary{}
+		err := d.Add("hello", "world")
 
-	want := "world"
-	got, err := d.Search("hello")
+		if err != nil {
+			t.Fatal("excepted success,", err)
+		}
 
-	if err != nil {
-		t.Fatal("not found", err)
-	}
+		want := "world"
+		got, err := d.Search("hello")
 
-	assertStrings(t, want, got)
+		if err != nil {
+			t.Fatal("not found", err)
+		}
+
+		assertStrings(t, want, got)
+	})
+
+	t.Run("already exists", func(t *testing.T) {
+		d := Dictionary{"hello": "world"}
+		err := d.Add("hello", "world")
+
+		assertError(t, ErrorAlreadyExists, err)
+	})
 }
