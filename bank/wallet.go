@@ -5,6 +5,10 @@ import (
 	"fmt"
 )
 
+var (
+	withdrawError = errors.New("amount error")
+)
+
 // Bitcoin is bit coin
 type Bitcoin uint
 
@@ -30,7 +34,7 @@ func (w *Wallet) Withdraw(amount Bitcoin) error {
 	}
 
 	// return nil
-	return errors.New("amount error")
+	return withdrawError
 }
 
 // Balance query the money
