@@ -11,12 +11,35 @@ const (
 	count     = 3
 )
 
+// Sleeper is interface
+type Sleeper interface {
+	Sleep()
+}
+
+type spy struct {
+	Calls int
+}
+
+func (s *spy) Sleep() {
+	s.Calls++
+}
+
+// RealSleep is real sleep
+type RealSleep struct {
+	duration time.Duration
+}
+
+// Sleep is sleep
+func (r *RealSleep) Sleep() {
+	time.Sleep(r.duration)
+}
+
 // Do do something
-func Do(w io.Writer) {
+func Do(w io.Writer, s Sleeper) {
 	for i := count; i > 0; i-- {
-		time.Sleep(1 * time.Second)
+		s.Sleep()
 		_, _ = fmt.Fprintln(w, i)
 	}
-	time.Sleep(1 * time.Second)
+	s.Sleep()
 	_, _ = fmt.Fprint(w, finalWord)
 }
