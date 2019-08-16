@@ -13,8 +13,21 @@ func assertStrings(t *testing.T, want, got string) {
 func TestSearch(t *testing.T) {
 	d := Dictionary{"test": "there is a test case"}
 
-	got := d.Search("test")
-	want := "there is a test case"
+	t.Run("known word", func(t *testing.T) {
+		got, _ := d.Search("test")
+		want := "there is a test case"
 
-	assertStrings(t, want, got)
+		assertStrings(t, want, got)
+	})
+
+	t.Run("unknown word", func(t *testing.T) {
+		_, err := d.Search("test2")
+		want := "there is no test case"
+
+		if err == nil {
+			t.Fatal("expected to get an error")
+		}
+
+		assertStrings(t, err.Error(), want)
+	})
 }
