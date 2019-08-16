@@ -16,14 +16,6 @@ type Sleeper interface {
 	Sleep()
 }
 
-type spy struct {
-	Calls int
-}
-
-func (s *spy) Sleep() {
-	s.Calls++
-}
-
 // RealSleep is real sleep
 type RealSleep struct {
 	duration time.Duration
