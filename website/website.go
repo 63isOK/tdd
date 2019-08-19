@@ -1,15 +1,19 @@
 package website
 
 import (
+	"fmt"
 	"net/http"
+	"time"
 )
 
-func racer(urlA, urlB string) string {
+func racer(urlA, urlB string) (string, error) {
 	select {
 	case <-ping(urlA):
-		return urlA
+		return urlA, nil
 	case <-ping(urlB):
-		return urlB
+		return urlB, nil
+	case <-time.After(10 * time.Second):
+		return "", fmt.Errorf("timeout waiting for %s and %s", urlA, urlB)
 	}
 }
 

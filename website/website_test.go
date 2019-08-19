@@ -16,19 +16,36 @@ func createHTTPServer(delay time.Duration) *httptest.Server {
 
 func TestRacer(t *testing.T) {
 
-	slowServer := createHTTPServer(20 * time.Millisecond)
-	fastServer := createHTTPServer(0 * time.Millisecond)
-	defer slowServer.Close()
-	defer fastServer.Close()
+	t.Run("without time", func(t *testing.T) {
+		slowServer := createHTTPServer(20 * time.Millisecond)
+		fastServer := createHTTPServer(0 * time.Millisecond)
+		defer slowServer.Close()
+		defer fastServer.Close()
 
-	url1 := slowServer.URL
-	url2 := fastServer.URL
+		url1 := slowServer.URL
+		url2 := fastServer.URL
 
-	want := url2
-	got := racer(url1, url2)
+		want := url2
+		got, _ := racer(url1, url2)
 
-	if want != got {
-		t.Errorf("want '%s', got '%s'", want, got)
-	}
+		if want != got {
+			t.Errorf("want '%s', got '%s'", want, got)
+		}
+	})
 
+	t.Run("test with timeout", func(t *testing.T) {
+		slowServer := createHTTPServer(11 * time.Second)
+		fastServer := createHTTPServer(10 * time.Second)
+		defer slowServer.Close()
+		defer fastServer.Close()
+
+		url1 := slowServer.URL
+		url2 := fastServer.URL
+
+		_, err := racer(url1, url2)
+
+		if err == nil {
+			t.Errorf("expected a error")
+		}
+	})
 }
