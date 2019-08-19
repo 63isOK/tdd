@@ -2,23 +2,22 @@ package website
 
 import (
 	"net/http"
-	"time"
 )
 
-func measureResponseTime(url string) time.Duration {
-	start := time.Now()
-	_, _ = http.Get(url)
-	return time.Since(start)
+func racer(urlA, urlB string) string {
+	select {
+	case <-ping(urlA):
+		return urlA
+	case <-ping(urlB):
+		return urlB
+	}
 }
 
-func racer(urlA, urlB string) string {
-
-	costA := measureResponseTime(urlA)
-	costB := measureResponseTime(urlB)
-
-	if costA < costB {
-		return urlA
-	}
-
-	return urlB
+func ping(url string) chan bool {
+	ch := make(chan bool)
+	go func() {
+		_, _ = http.Get(url)
+		ch <- true
+	}()
+	return ch
 }
