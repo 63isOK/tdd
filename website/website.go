@@ -5,14 +5,16 @@ import (
 	"time"
 )
 
-func racer(urlA, urlB string) string {
-	startA := time.Now()
-	_, _ = http.Get(urlA)
-	costA := time.Since(startA)
+func measureResponseTime(url string) time.Duration {
+	start := time.Now()
+	_, _ = http.Get(url)
+	return time.Since(start)
+}
 
-	startB := time.Now()
-	_, _ = http.Get(urlB)
-	costB := time.Since(startB)
+func racer(urlA, urlB string) string {
+
+	costA := measureResponseTime(urlA)
+	costB := measureResponseTime(urlB)
 
 	if costA < costB {
 		return urlA
