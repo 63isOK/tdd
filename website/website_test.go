@@ -26,7 +26,11 @@ func TestRacer(t *testing.T) {
 		url2 := fastServer.URL
 
 		want := url2
-		got, _ := racer(url1, url2)
+		got, err := racer(url1, url2)
+
+		if err != nil {
+			t.Fatalf("didn't excepted an error, but got one %v", err)
+		}
 
 		if want != got {
 			t.Errorf("want '%s', got '%s'", want, got)
@@ -34,18 +38,15 @@ func TestRacer(t *testing.T) {
 	})
 
 	t.Run("test with timeout", func(t *testing.T) {
-		slowServer := createHTTPServer(11 * time.Second)
-		fastServer := createHTTPServer(10 * time.Second)
-		defer slowServer.Close()
-		defer fastServer.Close()
+		server := createHTTPServer(15 * time.Millisecond)
+		defer server.Close()
 
-		url1 := slowServer.URL
-		url2 := fastServer.URL
+		url := server.URL
 
-		_, err := racer(url1, url2)
+		_, err := configurableRacer(url, url, 10*time.Millisecond)
 
 		if err == nil {
-			t.Errorf("expected a error")
+			t.Errorf("expected a error, but didn't get one")
 		}
 	})
 }
