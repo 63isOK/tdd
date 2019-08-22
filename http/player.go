@@ -5,15 +5,20 @@ import (
 	"net/http"
 )
 
+func getPlayerScore(name string) string {
+	if name == "jim" {
+		return "20"
+	}
+	if name == "tom" {
+		return "10"
+	}
+
+	return ""
+}
+
 // PlayerServer start a server
 func PlayerServer(w http.ResponseWriter, r *http.Request) {
 	player := r.URL.Path[len("/palyers/"):]
 
-	if player == "jim" {
-		_, _ = fmt.Fprintf(w, "20")
-	}
-
-	if player == "tom" {
-		_, _ = fmt.Fprintf(w, "10")
-	}
+	_, _ = fmt.Fprintf(w, getPlayerScore(player))
 }
