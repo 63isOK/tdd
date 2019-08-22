@@ -5,9 +5,15 @@ import (
 	"net/http"
 )
 
+type otherSotre struct{}
+
+func (o *otherSotre) GetPlayerScore(name string) int {
+	return 12
+}
+
 func main() {
-	handler := http.HandlerFunc(PlayerServer)
-	err := http.ListenAndServe(":8000", handler)
+	server := &PlayerServer{&otherSotre{}}
+	err := http.ListenAndServe(":8000", server)
 	if err != nil {
 		log.Fatalf("listen on 8000 failed %v", err)
 	}
