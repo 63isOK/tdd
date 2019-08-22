@@ -44,6 +44,7 @@ func (p *PlayerServer) processSocre(w http.ResponseWriter, r *http.Request) {
 	}
 	_, _ = fmt.Fprint(w, score)
 }
+
 func (p *PlayerServer) processWin(w http.ResponseWriter) {
 	w.WriteHeader(http.StatusAccepted)
 }
