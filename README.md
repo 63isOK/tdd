@@ -2,6 +2,10 @@
 
 [![Build Status](https://www.travis-ci.org/63isOK/tdd.svg?branch=master)](https://www.travis-ci.org/63isOK/tdd)
 
+<p align="left">
+  <a href="https://github.com/63isOK/tdd"><img alt="ci test status" src="https://github.com/63isOK/tdd/workflows/ci-test/badge.svg"></a>
+</p>
+
 练习tdd流程的仓库,附加ci.
 因为是一个练习项目,所以不走pr
 
